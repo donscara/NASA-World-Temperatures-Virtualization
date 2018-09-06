@@ -2,7 +2,9 @@
 title: "NASA World Temperature Visualization"
 author: "Donato Scarano"
 date: "05 settembre 2018"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 ## Overview
 
@@ -16,8 +18,9 @@ We used a Jitter format with different colours based on the columns DJF,MAM,JJA,
 This format is useful to see distribution along the time from the Zero Line, with a clear upward trend in this century.
 
 ```{r}
-library(readr)
 library(ggplot2)
+library(readr)
+ExcelFormattedGISTEMPDataCSV <- read_csv("ExcelFormattedGISTEMPDataCSV.csv")
 df<-data.frame(ExcelFormattedGISTEMPDataCSV)
 ggplot(df, aes(x=df$Year)) +
   geom_jitter(aes(y=df$DJF, color="DJF (Dec-Feb)")) +
@@ -41,6 +44,7 @@ The resulting graph corroborate the previous graph results showing an increasing
 ```{r}
 library(readr)
 library(ggplot2)
+ExcelFormattedGISTEMPData2CSV <- read_csv("ExcelFormattedGISTEMPData2CSV.csv")
 df<-data.frame(ExcelFormattedGISTEMPData2CSV)
 ggplot(df, aes(x=df$Year)) +
   geom_line(aes(y=df$Glob, color="Glob")) +
